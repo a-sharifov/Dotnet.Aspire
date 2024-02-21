@@ -8,7 +8,10 @@ public static class ProductsEndpoints
 
         productBuilder.MapGet("/", () => { }).WithName("GetAllProducts");
         productBuilder.MapGet("/{userId:guid}", (Guid userId) => { }).WithName("GetProducts");
-        productBuilder.MapPut("/{updateProductRequest:UpdateProductRequest}", () => { }).WithName("UpdateProduct");
+        productBuilder.MapPost("/{userId:guid}", (Guid userId) => { }).WithName("GetProducts");
+        productBuilder.MapPut("/", () => { }).WithName("UpdateProduct");
         productBuilder.MapDelete("/", () => { }).WithName("DeleteProductById");
     }
+
+
 }
