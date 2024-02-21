@@ -1,4 +1,4 @@
-# [Dotnet.Aspire](https://github.com/a-sharifov/Dotnet.Aspire) [![GitHub license](https://img.shields.io/badge/license-Apache-blue.svg)](https://github.com/a-sharifov/blob/Dotnet.Aspire/master/LICENSE)
+# [Dotnet.Aspire](https://github.com/a-sharifov/Dotnet.Aspire) [![GitHub license](https://img.shields.io/badge/license-Apache-blue.svg)](https://github.com/a-sharifov/Dotnet.Aspire/blob/master/LICENSE.txt)
 
 ## 🌟 Enjoyed my project?
 
