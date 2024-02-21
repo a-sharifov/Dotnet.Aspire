@@ -1,3 +1,3 @@
 ﻿namespace Catalog.UseCases.Products.Commands.CreateProduct;
 
-public sealed record CreateProductCommand(Guid ProductId, string ProductName) : ICommand;
+public sealed record CreateProductCommand(string ProductName) : ICommand;

@@ -10,7 +10,7 @@ internal sealed class CreateProductCommandHandler(
 
     public async Task Handle(CreateProductCommand request, CancellationToken cancellationToken)
     {
-        var productId = new ProductId(request.ProductId);
+        var productId = new ProductId(Guid.NewGuid());
         var productName = request.ProductName;
         var product = Product.Create(productId, productName);
 
