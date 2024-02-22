@@ -2,38 +2,34 @@
 
 
 This repository serves to demonstrate the current capabilities of .NET Aspire.
-.NET Aspire is designed to improve the experience of building .NET cloud-native apps.
 
-- Orchestration: .NET Aspire provides features for running and connecting multi-project applications and their dependencies.
-- Components: .NET Aspire components are NuGet packages for commonly used services, such as Redis or Postgres, with standardized interfaces ensuring they connect consistently and seamlessly with your app.
-- Tooling: .NET Aspire comes with project templates and tooling experiences for Visual Studio and the dotnet CLI help you create and interact with .NET Aspire apps.
+## Usage
+To run the project, ensure you have the required version of .NET and Docker installed. The project can be launched like any other C# project.
 
-## Purpose and Overview
-This repository aims to showcase the functionalities and potentials of .NET Aspire as of the current moment. 
+### Current Requirements :
+- .NET8.0 or up
+- Docker 25.0.2 or up 
+
+## That is .NET Aspire
+
+.NET Aspire is an opinionated, cloud ready stack for building observable, production ready, distributed applications. .NET Aspire is delivered through a collection of NuGet packages that handle specific cloud-native concerns.
 
 ## Features
 - **Cloud-native Architecture**: .NET Aspire boasts a cloud-native architecture, making it easy to deploy and manage in Azure environments.
 - **Seamless Azure Deployment**: With .NET Aspire, deploying applications to Azure is a straightforward process, thanks to its integration with Azure services.
 - **Intuitive Dashboard**: The platform offers an intuitive and visually appealing dashboard, simplifying monitoring and management tasks.
 - **Built-in Telemetry**: OpenTelemetry integration provides built-in telemetry support, offering insights into application performance and behavior.
-- **Orchestration**: Orchestration in the language used to write other components of the program
+- **Orchestration**: Orchestration in the language used to write other components of the program.
+- **Simple Add**: If you need add .NET Aspire in your project its so easy.
 
-## Usage
-To run the project, ensure you have the required version of .NET and Docker installed. The project can be launched like any other C# project.
-
-### Current Requirements :
-
-- net8.0 or up
-- docker  25.0.2 or up 
+## Example Dashboard .NET Aspire
+ 
 
 ## Current Status
 While .NET Aspire shows promise, it is still in its early stages. Some key points to note:
 - Limited toolset available currently
 - Potential as a web service orchestrator, akin to Azure or AWS, but still in a raw state
 - Encounters issues with startup and telemetry, typical of preview software
-
-## Future Prospects
-Despite its current limitations, .NET Aspire holds promise as a Docker-compose alternative for .NET projects. It offers easy integration for additional Docker containers in future releases.
 
 ## Additional Notes
 During the development process, several observations were made:
@@ -54,12 +50,46 @@ var postgres = builder.AddPostgres("postgres")
 
 var productsDB = postgres.AddDatabase("ProductsDB");
 
-builder.AddProject<Catalog_Api>("catalog")
+builder.AddProject<Catalog_Api>("catalog-api")
     .WithReference(cache)
     .WithReference(productsDB);
 
 builder.Build().Run();
 ```
+This configuration sets up a distributed application using .NET Aspire, where the "catalog-api" project interacts with Redis for caching and Postgres for managing product data. The builder pattern facilitates the creation and configuration of the application components, offering a unified and straightforward approach to application orchestration.
+
+### DistributedApplication
+
+DistributedApplication - is main class in Aspire library. if you need impelment Aspire orchestration you need execute 
+DistributedApplication.CreateBuilder() this static methos return IDistributedApplicationBuilder this interface is pattern builder.
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+```
+
+Next step you add image or project.
+```csharp
+builder.AddRedis("cache");
+```
+And run this project.
+```csharp
+builder.Build().Run();
+```
+
+### IDistributedApplicationBuilder Add Methods
+
+- AddProject() - A .NET project, for example ASP.NET Core web apps.
+- AddContainer() - A container image, such as a Docker image.
+- AddExecutable() - ExecutableResource an executable file.
+
+### IDistributedApplicationBuilder Container Methods
+
+- WithReplicas() - Add one or more replicas current image.
+- WithReference() - Wait start another image . If you current image dependency another image.
+- WithEnvironment() - Add environment in current docker image.
+---
+
+## Future Prospects
+Despite its current limitations, .NET Aspire holds promise as a Docker-compose alternative for .NET projects. It offers easy integration for additional Docker containers in future releases.
 
 ---
 
