@@ -10,7 +10,6 @@ var postgres = builder.AddPostgres("postgres")
 var productsDB = postgres.AddDatabase("ProductsDB");
 
 
-
 builder.AddProject<Catalog_Api>("catalog-api")
     .WithReference(cache)
     .WithReference(productsDB);
