@@ -2,31 +2,41 @@
 using Catalog.Infrastructure.DbContexts.Products;
 using Catalog.Presentation.Endpoints.Products;
 using Microsoft.EntityFrameworkCore;
+using Scrutor;
 
 namespace Catalog.Api;
 
-internal sealed class Startup(IConfiguration configuration)
+public class Startup(IConfiguration configuration)
 {
     private readonly IConfiguration _configuration = configuration;
 
     public void ConfigureServices(IServiceCollection services)
     {
-        services.AddDbContext<ProductDbContext>(builder => builder.UseNpgsql("""
-            Server=postgres;
-            Port=5432;
-            Database={POSTGRES_DB};
-            Username={POSTGRES_USER};
-            Password={POSTGRES_PASSWORD};
-            TimeZone=UTC;
-            """));
+        for (int i = 0; i < 1000; i++)
+        {
+            Console.WriteLine(_configuration.GetConnectionString("ProductsDb"));
+        }
 
-        services.AddStackExchangeRedisCache(setup => 
-        setup.Configuration = _configuration.GetConnectionString("Redis"));
+        services.AddNpgsql<ProductDbContext>("ProductsDb");
+
+        services.AddStackExchangeRedisCache(setup =>
+        setup.Configuration = _configuration.GetConnectionString("cache"));
+
+        services.Scan(selector => 
+        selector.FromAssemblies(Infrastructure.AssemblyReference.Assembly)
+        //Add classes in entry point is required method in scrutor.
+        .AddClasses()
+        .UsingRegistrationStrategy(RegistrationStrategy.Skip)
+        .AsImplementedInterfaces()
+        .WithScopedLifetime());
+
+        services.AddMediatR(configuration =>
+        configuration.RegisterServicesFromAssembly(
+            UseCases.ProjectReference.Assembly));
 
         // if you need swagger in minimal api
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
-        services.AddDistributedMemoryCache();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

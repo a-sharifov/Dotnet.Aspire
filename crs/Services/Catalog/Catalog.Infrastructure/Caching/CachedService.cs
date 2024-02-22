@@ -1,10 +1,9 @@
-﻿using Catalog.Infrastructure.Caching.Abstractions;
-using Microsoft.Extensions.Caching.Distributed;
+﻿using Microsoft.Extensions.Caching.Distributed;
 using System.Text.Json;
 
 namespace Catalog.Infrastructure.Caching;
 
-internal class CachedService(IDistributedCache cache) : ICachedService
+public class CachedService(IDistributedCache cache) : ICachedService
 {
     protected readonly IDistributedCache _cache = cache;
 

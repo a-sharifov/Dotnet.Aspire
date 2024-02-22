@@ -2,7 +2,7 @@
 
 namespace Catalog.Infrastructure.UnitOfWorks;
 
-internal sealed class UnitOfWork(ProductDbContext productDbContext) : IUnitOfWork
+public sealed class UnitOfWork(ProductDbContext productDbContext) : IUnitOfWork
 {
     private readonly ProductDbContext _productDbContext = productDbContext;
 

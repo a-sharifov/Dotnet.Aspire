@@ -1,17 +1,17 @@
 ﻿using Catalog.Core.ProductAggregate;
 using Catalog.Core.ProductAggregate.Ids;
 using Catalog.Core.ProductAggregate.Repositories;
-using Catalog.Infrastructure.Caching;
+using Catalog.Infrastructure.Caching.Abstractions;
 using Catalog.Infrastructure.DbContexts.Products;
 
 namespace Catalog.Infrastructure.Repositories;
 
 public sealed class ProductRepository(
     ProductDbContext productDbContext,
-    CachedEntityService<Product, ProductId> cachedService) : IProductRepository
+    ICachedEntityService<Product, ProductId> cachedService) : IProductRepository
 {
     private readonly ProductDbContext _productDbContext = productDbContext;
-    private readonly CachedEntityService<Product, ProductId> _cachedService = cachedService;
+    private readonly ICachedEntityService<Product, ProductId> _cachedService = cachedService;
 
     public async Task AddProductAsync(Product product, CancellationToken cancellationToken = default)
     {
@@ -43,5 +43,4 @@ public sealed class ProductRepository(
     }
 
     public void UpdateProduct(Product product) => _productDbContext.Update(product);
-
 }

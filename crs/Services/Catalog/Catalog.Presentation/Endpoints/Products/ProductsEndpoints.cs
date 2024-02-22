@@ -4,6 +4,8 @@ using Catalog.UseCases.Products.Commands.DeleteProductById;
 using Catalog.UseCases.Products.Commands.UpdateProduct;
 using Catalog.UseCases.Products.Queries.GetAllProducts;
 using Catalog.UseCases.Products.Queries.GetProductById;
+using Microsoft.AspNetCore.Mvc;
+
 namespace Catalog.Presentation.Endpoints.Products;
 
 public static class ProductsEndpoints 
@@ -34,14 +36,14 @@ public static class ProductsEndpoints
         return Results.Ok(product);
     }
 
-    private static async Task<IResult> CreateProduct(CreateProductRequest request, ISender sender)
+    private static async Task<IResult> CreateProduct([FromBody] CreateProductRequest request, ISender sender)
     {
         var command = new CreateProductCommand(request.ProductName);
         await sender.Send(command);
         return Results.Ok();
     }
 
-    private static async Task<IResult> UpdateProduct(UpdateProductRequest request, ISender sender)
+    private static async Task<IResult> UpdateProduct([FromBody] UpdateProductRequest request, ISender sender)
     {
         var command = new UpdateProductCommand(request.ProductId, request.ProductName);
         await sender.Send(command);

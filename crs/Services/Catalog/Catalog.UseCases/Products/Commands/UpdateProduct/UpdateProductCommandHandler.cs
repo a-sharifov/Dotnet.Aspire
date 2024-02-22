@@ -13,7 +13,7 @@ internal sealed class UpdateProductCommandHandler(
         var productId = new ProductId(request.ProductId);
         var product = Product.Create(productId, request.ProductName);
 
-        await _productRepository.UpdateProduct(product);
+        _productRepository.UpdateProduct(product);
         await _unitOfWork.Commit(cancellationToken);
     }
 }
