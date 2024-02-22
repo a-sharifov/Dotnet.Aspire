@@ -1,4 +1,4 @@
-# [Dotnet.Aspire](https://github.com/a-sharifov/Dotnet.Aspire) [![GitHub license](https://img.shields.io/badge/license-Apache-blue.svg)](https://github.com/a-sharifov/Dotnet.Aspire/blob/master/LICENSE.txt)
+# [Dotnet.Aspire V8.0.0-preview.3.24105.21 Example](https://github.com/a-sharifov/Dotnet.Aspire) [![GitHub license](https://img.shields.io/badge/license-Apache-blue.svg)](https://github.com/a-sharifov/Dotnet.Aspire/blob/master/LICENSE.txt)
 
 
 This repository serves to demonstrate the current capabilities of .NET Aspire.
