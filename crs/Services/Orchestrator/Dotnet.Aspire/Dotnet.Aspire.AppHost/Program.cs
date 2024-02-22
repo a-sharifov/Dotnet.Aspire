@@ -11,7 +11,7 @@ var productsDB = postgres.AddDatabase("ProductsDB");
 
 
 
-builder.AddProject<Catalog_Api>("catalog")
+builder.AddProject<Catalog_Api>("catalog-api")
     .WithReference(cache)
     .WithReference(productsDB);
 
