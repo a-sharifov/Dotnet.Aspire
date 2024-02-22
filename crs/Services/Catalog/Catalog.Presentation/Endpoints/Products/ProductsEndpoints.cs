@@ -4,7 +4,6 @@ using Catalog.UseCases.Products.Commands.DeleteProductById;
 using Catalog.UseCases.Products.Commands.UpdateProduct;
 using Catalog.UseCases.Products.Queries.GetAllProducts;
 using Catalog.UseCases.Products.Queries.GetProductById;
-
 namespace Catalog.Presentation.Endpoints.Products;
 
 public static class ProductsEndpoints 

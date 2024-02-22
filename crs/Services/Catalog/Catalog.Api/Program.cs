@@ -1,4 +1,8 @@
+using Catalog.Presentation.Endpoints.Products;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.AddServiceDefaults();
 
 builder.Services.AddControllers();
 
@@ -7,6 +11,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -14,6 +19,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.MapDefaultEndpoints();
+app.MapProductsEndpoints();
 
 app.UseAuthorization();
 app.MapControllers();

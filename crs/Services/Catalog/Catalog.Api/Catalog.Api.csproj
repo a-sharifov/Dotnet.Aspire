@@ -5,10 +5,20 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <InvariantGlobalization>true</InvariantGlobalization>
+    <IsServiceFabricServiceProject>True</IsServiceFabricServiceProject>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="8.0.2" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.2" />
+    <PackageReference Include="Polly" Version="8.3.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Orchestrator\Dotnet.Aspire\Dotnet.Aspire.ServiceDefaults\Dotnet.Aspire.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\Catalog.Presentation\Catalog.Presentation.csproj" />
   </ItemGroup>
 
 </Project>
