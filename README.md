@@ -23,7 +23,7 @@ To run the project, ensure you have the required version of .NET and Docker inst
 - **Simple Add**: If you need add .NET Aspire in your project its so easy.
 
 ## Example Dashboard .NET Aspire
- 
+  ![Example dashboard .NET Aspire](https://github.com/a-sharifov/Dotnet.Aspire/blob/master/img/dotnet_aspire_dasboard_example.png?raw=true)
 
 ## Current Status
 While .NET Aspire shows promise, it is still in its early stages. Some key points to note:
